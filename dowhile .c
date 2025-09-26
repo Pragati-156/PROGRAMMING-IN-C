@@ -1,26 +1,54 @@
-//Write a C program for a simple calculator that repeatedly asks the user for two numbers and an operation (+, -, *, /) 
-//until the user chooses to exit. Must use a do while loop to repeat until exit.
+/*Write a C program for a simple calculator that repeatedly asks the user for two numbers and an operation (+, -, *, /) 
+until the user chooses to exit. Must use a do while loop to repeat until exit.*/
 #include <stdio.h>
-
 int main() {
-    double a, b;
-    char op;
+     
+    double num1, num2, answer;
+    char op, yes_no;
+
     do {
-        printf("\nEnter expression (a op b) or x to exit: ");
-        scanf(" %c", &op);   // read operator
+        printf("Enter an operator (+, -, *, /): ");
+        scanf(" %c", &op);  // space before %c to avoid newline issue
 
-        if (op == 'x' || op == 'X') break;
+        printf("Enter the first number: ");
+        scanf("%lf", &num1);
 
-        scanf("%lf %lf", &a, &b);
+        printf("Enter the second number: ");
+        scanf("%lf", &num2);
 
         switch (op) {
-            case '+': printf("= %.2lf\n", a + b); break;
-            case '-': printf("= %.2lf\n", a - b); break;
-            case '*': printf("= %.2lf\n", a * b); break;
-            case '/': b != 0 ? printf("= %.2lf\n", a / b) : printf("Error! Divide by 0\n"); break;
-            default:  printf("Invalid operator!\n");
+            case '+':
+                answer = num1 + num2;
+                printf("Answer is %.2lf\n", answer);
+                break;
+
+            case '-':
+                answer = num1 - num2;
+                printf("Answer is %.2lf\n", answer);
+                break;
+
+            case '*':
+                answer = num1 * num2;
+                printf("Answer is %.2lf\n", answer);
+                break;
+
+            case '/':
+                if (num2 != 0) {
+                    answer = num1 / num2;
+                    printf("Answer is %.2lf\n", answer);
+                } else {
+                    printf("Error! Division by zero.\n");
+                }
+                break;
+
+            default:
+                printf("Invalid operator!\n");
         }
-    } while (1);
+
+        printf("Continue or not? (y/n): ");
+        scanf(" %c", &yes_no);  // again space before %c
+
+    } while (yes_no == 'y' || yes_no == 'Y');
 
     return 0;
 }
